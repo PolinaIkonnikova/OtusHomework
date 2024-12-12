@@ -15,10 +15,12 @@ class Triangle(Figure):
         sort_sides = sorted([self.first_param, self.second_param, self.third_param])
         return sort_sides[0] + sort_sides[1] > sort_sides[2]
 
+    @property
     def get_area(self) -> float:
-        half_per = self.get_perimeter() / 2
+        half_per = self.get_perimeter / 2
         return sqrt(half_per * (half_per - self.first_param) * (half_per - self.second_param) *
                     (half_per - self.third_param))
 
+    @property
     def get_perimeter(self) -> float:
         return self.first_param + self.second_param + self.third_param
