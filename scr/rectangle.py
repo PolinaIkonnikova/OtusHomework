@@ -9,8 +9,8 @@ class Rectangle(Figure):
 
     @property
     def get_area(self) -> float:
-        return self.first_param * self.second_param
+        return self._round_result(self.first_param * self.second_param)
 
     @property
     def get_perimeter(self) -> float:
-        return 2 * (self.first_param + self.second_param)
+        return self._round_result(2 * (self.first_param + self.second_param))
