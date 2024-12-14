@@ -1,21 +1,19 @@
-from typing import Any
+from abc import abstractmethod, ABC
 
 
-class Figure:
+class Figure(ABC):
 
-    def __init__(self, first_param: float, second_param: float = None) -> None:
-        self.first_param = first_param
-        self.second_param = second_param
-
+    @abstractmethod
     @property
     def get_area(self) -> float:
-        return self.first_param * self.second_param
+        ...
 
+    @abstractmethod
     @property
     def get_perimeter(self) -> float:
-        return 2 * (self.first_param + self.second_param)
+        ...
 
-    def add_area(self, figure: Any) -> float:
+    def add_area(self, figure: 'Figure') -> float:
         if not isinstance(figure, Figure):
             raise ValueError(f"{figure} is not a Figure object")
         return self.get_area + figure.get_area

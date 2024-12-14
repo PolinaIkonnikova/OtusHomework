@@ -6,12 +6,12 @@ class Circle(Figure):
     pi = 3.14
 
     def __init__(self, radius: float) -> None:
-        super().__init__(first_param=radius)
+        self.radius = radius
 
     @property
     def get_area(self) -> float:
-        return self.pi * self.first_param ** 2
+        return self.pi * self.radius ** 2
 
     @property
     def get_perimeter(self) -> float:
-        return 2 * self.pi * self.first_param
+        return 2 * self.pi * self.radius

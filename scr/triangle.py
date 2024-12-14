@@ -5,7 +5,8 @@ from scr.figure import Figure
 class Triangle(Figure):
 
     def __init__(self, first_param: float, second_param: float, third_param: float) -> None:
-        super().__init__(first_param, second_param)
+        self.first_param = first_param
+        self.second_param = second_param
         self.third_param = third_param
         if not self._is_valid_triangle():
             raise ValueError("You must back to the school and learn geometry. "
