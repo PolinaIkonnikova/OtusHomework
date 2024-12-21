@@ -3,7 +3,6 @@ from copy import copy
 from csv import DictReader
 from itertools import islice
 from pathlib import Path
-from pprint import pprint
 from typing import Iterator
 
 
@@ -52,6 +51,7 @@ def distribute_books(books_file: str | Path, users_file: str | Path,
     happy_users = all_books_count % users_count
     # можно вычислять оставшихся юзеров по индексу, но лучше сделать независимый счетчик
     counter = copy(users_count)
+    csv_data_iterator = csv_file_iterator(books_file)
     for user in users_data:
         books_count = whole_books_count if counter > happy_users else whole_books_count + 1
         result = {
@@ -60,7 +60,7 @@ def distribute_books(books_file: str | Path, users_file: str | Path,
             "address": user["address"],
             "age": user["age"],
             # второй вызов итератора для извлечения элементов
-            "books": get_books(csv_file_iterator(CSV_PATH), books_count)
+            "books": get_books(csv_data_iterator, books_count)
         }
         counter -= 1
         common_data.append(result)
@@ -73,4 +73,4 @@ def distribute_books(books_file: str | Path, users_file: str | Path,
 
 if __name__ == '__main__':
     res = distribute_books(CSV_PATH, JSON_PATH, RESULT_PATH)
-    pprint(res)
+    assert res[0]['books'] != res[1]['books'] != res[2]['books']
